@@ -12,23 +12,23 @@ from matplotlib import pyplot as plt
 eOs = -34.02 # eV
 eOp = -16.77 # eV
 
-
-d = [1.208] # list to contain the several O-O separations
-for i in range(10):
-    d0 = 1.208 + 0.005*(i+1)
-    d1 = 1.208 - 0.005*(i+1)
-    d.append(round(d0, 6))
-    d.append(round(d1, 6))
-d.sort()
+d0 = 1.208 # angstrom
+d = np.array([d0]) # list to contain the several O-O separations
+for i in range(1):
+    d1 = 1.208 + 0.1**(5*(i+1))
+    d2 = 1.208 - 0.1**(5*(i+1))
+    d = np.append(d, d1)
+    d = np.append(d, d2)
+d = np.sort(d)
 print('distances = ', d)
 
 
 def Harrison(dist): # calculting the Harrison coefficients for each bond distance
     const = 7.62 # eV*A^2
-    Vsso = -1.32*const/dist
-    Vspo = 1.42*const/dist
-    Vppo = 2.22*const/dist
-    Vppn = -0.63*const/dist
+    Vsso = -1.32*const/(dist**2)
+    Vspo = 1.42*const/(dist**2)
+    Vppo = 2.22*const/(dist**2)
+    Vppn = -0.63*const/(dist**2)
     return Vsso, Vspo, Vppo, Vppn
 
 def Hamiltonian(dist): # create a Hamiltonian matrix for each bond distance. Also returns eigen-solutions, the diagonalized Hamiltonian, and a hermiticity check
@@ -109,7 +109,7 @@ def bondsAndOrbitals(dist): # fills orbitals, writes the orbital configuration, 
     bond_order = 0.5*(num_bonding_electrons - num_antibonding_electrons) # calculates the bond order
     
     Eband1 = 0 # initializing band energy
-    eigenvals.sort()
+    eigenvals = np.sort(eigenvals)
     for j in range(len(exponents)): # calculating band energy
         
         Eband1 = Eband1 + eigenvals[j]*exponents[j]
@@ -122,7 +122,7 @@ band_energies = np.array([])
 for i in range(len(d)): 
     Vsso, Vspo, Vppo, Vppn = Harrison(d[i])
     H, D, eigvals, eigvecs, herm = Hamiltonian(d[i])
-    print("The raw Hamiltonian is ")
+    print("The raw Hamiltonian for bond distance d = " + str(d[i]) + 'angstrom is ')
     print(H)
     print()
     print('The diagonalized Hamiltonian is ')
@@ -193,14 +193,13 @@ print("To find what C is in Vrep, we can set the derivative of Etot at d0 equal 
 
 " Calculating C "
 sym_diffs = np.array([]) # list to hold the symmetric differences from 1.208 angstrom
-for i in range(len(d)):
+for i in range(len(band_energies)):
     if i > 0 and i < len(d)-1:
-        diff_i = (band_energies[i+1] - band_energies[i-1])/(2*(d[i+1] - d[i-1]))
+        diff_i = (band_energies[len(band_energies) - i] - band_energies[i])/(2*(d[len(band_energies) - i] - d[i]))
         sym_diffs = np.append(sym_diffs, diff_i)
-print(sym_diffs)
 print("Since this is a symmetric difference, the central term in the array will be the closest to the actual value. To solve for C, multiply this number by d0^5.")
-C = sym_diffs[int(0.5*(len(sym_diffs)-1))]*(d0**5) # the coefficient in Vrep
-print('dEband/dd', sym_diffs[int(0.5*(len(sym_diffs)-1))])
+C = sym_diffs[len(sym_diffs)-1]*(d0**5)/4 # the coefficient in Vrep
+print('dEband/dd', sym_diffs[len(sym_diffs)-1])
 print('C = ', round(C, 6))
 print()
 print("Then Vrep = C/d^4.")
@@ -215,7 +214,7 @@ plotEband = np.array([])
 plotEtot = np.array([])
 plotDelE = np.array([])
 Ecoh = np.array([])
-bond_distance = np.linspace(1, 10, 5000)
+bond_distance = np.linspace(0.5, 3, 5000)
 
 for i in bond_distance: # filling out the energy arrays
      plotEband = np.append(plotEband, bondsAndOrbitals(i)[4])
