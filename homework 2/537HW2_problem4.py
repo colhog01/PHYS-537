@@ -200,8 +200,9 @@ for i in range(len(d)):
 print(sym_diffs)
 print("Since this is a symmetric difference, the central term in the array will be the closest to the actual value. To solve for C, multiply this number by d0^5.")
 C = sym_diffs[int(0.5*(len(sym_diffs)-1))]*(d0**5) # the coefficient in Vrep
-print(sym_diffs[int(0.5*(len(sym_diffs)-1))])
-print(round(C, 6))
+print('dEband/dd', sym_diffs[int(0.5*(len(sym_diffs)-1))])
+print('C = ', round(C, 6))
+print()
 print("Then Vrep = C/d^4.")
 print("Then Etot = Eband + Vrep, and delta-E = Esep - Etot. Both of these functions are also functions of bond distance, as are Vrep and Eband. Esep is fixed since eOs and eOp are fixed.")
 print("Now we can plot these with respect to distance.")
