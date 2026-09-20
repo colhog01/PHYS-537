@@ -75,13 +75,20 @@ for i in range(len(U)):
         print("The estimate is " + str(round(error, 6)) + "% from the exact J")
 
 ' creating a two-panel figure of J and the superexchange over U/t[0.25, 20] '
-x = np.linspace(0.25, 20, 1000)
+x = np.linspace(0.25, 20, 1000) # U/t from 0.25 to 20, inclusive
+
+plotIonicProb = np.array([]) # array to contain all the ionic probability values to be plotted
+for i in x: # calculating each ionic probability
+    theta = np.arctan(np.sqrt((i*t)**2 + (4*t)**2)/(4*t))
+    plotIonicProb = np.append(plotIonicProb, np.sin(theta))
+
 fig, ax = plt.subplots(2, 1)
 ax[0].plot(x, e/t - (2*e/t + 0.5*x - np.sqrt(4 + 0.25*(x**2))))
-ax[0].set_ylabel('J/t')
+ax[0].set_ylabel('J/t and 4t/U')
 ax[0].set_xlabel('U/t')
-ax[1].plot(x, 4/x)
-ax[1].set_ylabel('Superexchange')
+ax[0].plot(x, 4/x)
+ax[1].plot(x, plotIonicProb)
+ax[1].set_ylabel('Ionic Probability')
 ax[1].set_xlabel('U/t')
 
 ' saving plot as a 600-DPI png PIL object '
@@ -89,3 +96,4 @@ plt.savefig('HW2_P2.png', format = 'png', dpi = 600)
 pil_img = pil.Image.open('HW2_P2.png')
 
 plt.plot()
+
