@@ -80,7 +80,7 @@ fig, ax = plt.subplots(2, 1)
 ax[0].plot(x, e/t - (2*e/t + 0.5*x - np.sqrt(4 + 0.25*(x**2))))
 ax[0].set_ylabel('J/t')
 ax[0].set_xlabel('U/t')
-ax[1].plot(x, 4*t/x)
+ax[1].plot(x, 4/x)
 ax[1].set_ylabel('Superexchange')
 ax[1].set_xlabel('U/t')
 
