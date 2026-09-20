@@ -79,7 +79,7 @@ x = np.linspace(0.25, 20, 1000) # U/t from 0.25 to 20, inclusive
 
 plotIonicProb = np.array([]) # array to contain all the ionic probability values to be plotted
 for i in x: # calculating each ionic probability
-    theta = np.arctan(np.sqrt((i*t)**2 + (4*t)**2)/(4*t))
+    theta = np.arctan((np.sqrt((i*t)**2 + (4*t)**2)-t*i)/(4*t))
     plotIonicProb = np.append(plotIonicProb, np.sin(theta))
 
 fig, ax = plt.subplots(2, 1)
