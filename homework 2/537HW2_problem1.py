@@ -18,7 +18,12 @@ s = 0.18 # overlap
 H = np.array([[es, h],[h, es]]) # Hamiltonian matrix
 S = np.array([[1, s],[s, 1]]) # Overlap matrix
 
-
+print('The Hamiltonian is')
+print(H)
+print()
+print('and the overlap matrix is')
+print(S)
+print()
 
 eigvals, eigvecs = sp.linalg.eigh(H, S) # generalized eigenvalues and eigenvectors of Hc = E(Sc)
 
