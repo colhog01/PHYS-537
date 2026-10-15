@@ -142,7 +142,7 @@ def bands_3d():
     
     # plotting the bands with band_plot_3d using the energies at the sampled points along the desired path
     band_plot_3d("3D graphite bands","Path Γ-K-M-Γ-A-H-L-A through the layered hexagonal Brillouin zone",
-        s,lo,midlo,midhi,hi,t,["Γ","K","M","Γ","A","H","L","A"],"graphite-3d-high-symmetry-bands-harrison-600dpi.png",
+        s,lo,midlo,midhi,hi,t,["Γ","K","M","Γ","A","H","L","A"],"graphite-3d-high-symmetry-bands-600dpi.png",
         "",
         parameter_position=(1360,390,2120,760))
 
