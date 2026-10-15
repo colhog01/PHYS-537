@@ -168,7 +168,7 @@ def bands_3d():
         midhi = np.append(midhi, over1)
         hi = np.append(hi, over2)
     band_plot_3d("2D graphite bands","Path Γ-K-M-Γ through the diamond-shaped Brillouin zone",
-        s,lo,midlo,midhi,hi,t,["Γ","K","M","Γ"],"graphite-2layers-2d-high-symmetry-bands-harrison-600dpi.png",
+        s,lo,midlo,midhi,hi,t,["Γ","K","M","Γ"],"graphite-2layers-2d-high-symmetry-bands-600dpi.png",
         "The flat X-M edge is exact only for the nearest-neighbor checkerboard model.",
         parameter_position=(1360,390,2120,760))
 
@@ -186,7 +186,7 @@ def bands_3d_K():
        midhi = np.append(midhi, over1)
        hi = np.append(hi, over2)
    band_plot_3d("2D graphite bands","Path around K through the diamond-shaped Brillouin zone",
-       s,lo,midlo,midhi,hi,t,["K-","K","K+"],"graphite-2layers-2d-K-bands-harrison-600dpi.png",
+       s,lo,midlo,midhi,hi,t,["K-","K","K+"],"graphite-2layers-2d-K-bands-600dpi.png",
        "The flat X-M edge is exact only for the nearest-neighbor checkerboard model.",
        parameter_position=(1360,390,2120,760))
 
