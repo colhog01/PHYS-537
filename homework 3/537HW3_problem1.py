@@ -181,7 +181,7 @@ def bands_2d():
         lo = np.append(lo, under)
         hi = np.append(hi, over)
     band_plot("2D graphite bands","Path Γ-K-M-Γ through the diamond-shaped Brillouin zone",
-        s,lo,hi,t,["Γ","K","M","Γ"],"graphite-2d-high-symmetry-bands-harrison-600dpi.png",
+        s,lo,hi,t,["Γ","K","M","Γ"],"graphite-2d-high-symmetry-bands-600dpi.png",
         "The flat X-M edge is exact only for the nearest-neighbor checkerboard model.",
         parameter_position=(1360,390,2120,760))
 
@@ -195,7 +195,7 @@ def bands_2d_K():
        lo = np.append(lo, under)
        hi = np.append(hi, over)
    band_plot("2D graphite bands","Path around K through the hexagonal Brillouin zone",
-       s,lo,hi,t,["K-","K","K+"],"graphite-2d-K-bands-harrison-600dpi.png",
+       s,lo,hi,t,["K-","K","K+"],"graphite-2d-K-bands-600dpi.png",
        "",
        parameter_position=(1360,390,2120,760))
    qt = np.where((hi==energies2D(H1L(factor(K,2)))[1]))
