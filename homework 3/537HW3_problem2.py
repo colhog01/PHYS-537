@@ -244,7 +244,7 @@ ax.set_title("Weights at K")
 plt.tight_layout()
 
 # saving heat map as 600-DPI png PIL object
-plt.savefig(OUT/"graphene-2layers-heatmap.png",format='png',dpi=DPI)
+plt.savefig(OUT/"graphite-2layers-heatmap.png",format='png',dpi=DPI)
 
 ### Describing the eigenvectors as dimer or non-dimer
 eigenvecs = vectors(H2L(factor(K, 2)))
